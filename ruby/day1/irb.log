@@ -1,0 +1,16 @@
+"Yo, peeps"
+#   => "Yo, peeps"
+"Yo, peeps".index /peep/
+#   => 4
+(1..10).each { |x| puts "DAN RULEZ" }
+#   => 1..10
+(0..9).each { |x| puts "This sentence is #{x} times better than the last one" }
+#   => 0..9
+[].last
+#   => nil
+[].last == 1
+#   => false
+(0..10).to_a[-1]
+#   => 10
+(0..10).to_a[-2]
+#   => 9

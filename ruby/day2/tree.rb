@@ -1,9 +1,12 @@
 class Tree
   attr_accessor :children, :node_name
 
-  def initialize(name, children=[])
-    @children = children
+  def initialize(name, hash)
     @node_name = name
+    @children = []
+    hash.map do |k,v|
+      @children.push Tree.new(k,v)
+    end
   end
 
   def visit_all(&block)
@@ -14,4 +17,26 @@ class Tree
   def visit(&block)
     block.call self
   end
+
+  def to_s
+    @node_name
+  end
 end
+
+
+family = {
+    'grandpa' => {
+      'dad' => {
+        'child1' => {},
+        'child2' => {}
+      },
+      'uncle' => {
+        'child3' => {},
+        'child4' => {}
+      }
+    }
+  }
+
+genes = Tree.new('root', family)
+
+genes.visit_all {|n| puts n}

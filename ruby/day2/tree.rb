@@ -3,10 +3,7 @@ class Tree
 
   def initialize(name, hash)
     @node_name = name
-    @children = []
-    hash.map do |k,v|
-      @children.push Tree.new(k,v)
-    end
+    @children = hash.map { |k,v| Tree.new(k,v) }
   end
 
   def visit_all(&block)

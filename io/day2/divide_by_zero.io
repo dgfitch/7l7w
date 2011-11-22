@@ -11,10 +11,14 @@ HUH
 
 42 / 0 println
 
-divide := Number getSlot("/")
+CrazyScope := Object clone
 
-Number / := method(d,
-  if(d == 0, 0, self divide(d))
+CrazyScope do(
+  divide := Number getSlot("/")
+
+  Number / := method(d,
+    if(d == 0, 0, self divide(d))
+  )
+
+  42 / 0 println
 )
-
-42 / 0 println

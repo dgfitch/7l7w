@@ -16,3 +16,10 @@ genre(segovia,classical).
 
 instrument_genre(I, G) :- genre(Musician, G), plays(Musician, I).
 
+% So now I can query for which genre uses sax
+%- instrument_genre(sax, Where).
+%
+% and which instruments are used in a genre 
+%- instrument_genre(Noisemaker, metal).
+
+

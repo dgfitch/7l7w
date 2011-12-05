@@ -9,16 +9,23 @@ board_is_valid([X|XS]) :-
   board_is_valid(XS).
 
 eight_queens(Board) :-
+  board_is_valid(Board),
+
   Range = [1,2,3,4,5,6,7,8],
   InvertedRange = [-1,-2,-3,-4,-5,-6,-7,-8],
 
   % first check columns are distinct
   distinct(Board),
-  sort(Board,Range),
   
   % now check diagonals
-  distinct(add_lists(Board,Range)),
-  distinct(add_lists(Board,InvertedRange)).
+  % theoretically D1 should sum diagonals from lower left to upper right
+  % and D1 should be upper left to lower right,
+  % but clearly something is not working how I expect here
+  Diagonals1 is add_lists(Board,Range),
+  Diagonals2 is add_lists(Board,InvertedRange),
+
+  distinct(Diagonals1),
+  distinct(Diagonals2).
 
 
 % ensure all things in a list are distinct

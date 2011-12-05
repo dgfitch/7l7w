@@ -18,11 +18,36 @@ rev(X,X,[]).
 % (prolog can deduce from the rules that it doesn't matter what B is, but A = C)
 
 
-smallest(X,[Current,Head|Rest]) :- 
-  Head < Current, smallest(Current,Rest).
-smallest(X,[Current,Head|Rest]) :- 
-  Head >= Current, smallest(X,Rest).
+smallest(X,[H,N|Rest]) :- 
+  H =< N, 
+  smallest(X,[H|Rest]).
+
+smallest(X,[H,N|Rest]) :- 
+  H >= N,
+  smallest(X,[N|Rest]).
 
 smallest(X,[X]).
 
-% ugh I'm close but not there
+% FINALLY JEEEEZ that was harder than I expected
+
+
+
+insert_sort(List,Sorted) :- 
+  sortacc(List,[],Sorted).
+
+sortacc([],L,L).
+sortacc([H|T],L,Sorted) :- 
+  insert(H,L,NewL), 
+  sortacc(T,NewL,Sorted).
+
+insert(X,[H|T],[X,H|T]) :-
+  X =< H.
+
+insert(X,[H|T],[H|NT]) :-
+  X > H,
+  insert(X,T,NT).
+
+insert(X,[],[X]).
+
+% yuck
+
